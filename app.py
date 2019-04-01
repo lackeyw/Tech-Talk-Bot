@@ -10,7 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 def respond_to_message():
 
-	callback = request.json(silent=True)
+	callback = request.get_json()
 
 	payload = {
 			"bot_id" : "fd4639380b059b8db9b34c4e14",
