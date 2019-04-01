@@ -7,7 +7,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('', methods=['POST'])
+@app.route('/', methods=['POST'])
 def respond_to_message():
 
 	callback = request.json(silent=True)
