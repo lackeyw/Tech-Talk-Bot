@@ -4,6 +4,7 @@ import sys
 import string
 import os
 from flask import Flask, request
+import datetime
 
 app = Flask(__name__)
 
@@ -63,13 +64,16 @@ def respond_to_message():
 			scoreboard_text = "The top five most-liked messages of the past week are:\n1. " + list_o_likes[0]["user"] + ":'" + list_o_likes[0]["message_text"] + "', " + list_o_likes[0]["num_of_likes"] + " likes\n2. " + list_o_likes[1]["user"] + ":'" + list_o_likes[1]["message_text"] + "', " + list_o_likes[1]["num_of_likes"] + " likes\n3. " + list_o_likes[2]["user"] + ":'" + list_o_likes[2]["message_text"] + "', " + list_o_likes[2]["num_of_likes"] + " likes\n4. " + list_o_likes[3]["user"] + ":'" + list_o_likes[3]["message_text"] + "', " + list_o_likes[3]["num_of_likes"] + " likes\n5. " + list_o_likes[4]["user"] + ":'" + list_o_likes[4]["message_text"] + "', " + list_o_likes[4]["num_of_likes"] + " likes\n"
 			payload["text"] = scoreboard_text
 
+		elif "remind" in message_text:
+			payload["text"] = "Your team meeting is on Wednesday at 3 PM in room "
+			
 		else:
 			payload["text"] = "I'm sorry, I could not understand your request."
 
-		print(payload["text"])
 		r = requests.post('https://api.groupme.com/v3/bots/post', params = payload)
 
 if __name__ == '__main__':
     # Bind to PORT if defined, otherwise default to 5000.
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
