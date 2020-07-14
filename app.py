@@ -14,7 +14,7 @@ def respond_to_message():
 	callback = request.get_json()
 
 	payload = {
-			"bot_id" : "fd4639380b059b8db9b34c4e14",
+			"bot_id" : "",
 			"text" : 0
 		}
 
